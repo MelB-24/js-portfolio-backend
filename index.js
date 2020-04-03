@@ -6,12 +6,10 @@ const mongoose = require("mongoose")
 require("dotenv").config()
 
 const Project = require("./models/project")
-// const uri = require("./mongoURI")
-const keys = require("./keys")
+// const keys = require("./keys")
 
 const app = express()
 const PORT = process.env.PORT || 5000
-// const mongouri = process.env.mongoURI
 
 app.use(express.json())
 
@@ -25,8 +23,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 AWS.config.update({
-    accessKeyId: keys.iam_access_id,
-    secretAccessKey: keys.iam_secret,
+    accessKeyId: process.env.IAM_ACCESS_ID,
+    secretAccessKey: process.env.IAM_SECRET,
     region: "ap-southeast-2"
 })
 
