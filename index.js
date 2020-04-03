@@ -3,14 +3,15 @@ const multer = require("multer")
 const AWS = require("aws-sdk")
 const fs = require("fs")
 const mongoose = require("mongoose")
+require("dotenv").config()
 
 const Project = require("./models/project")
-const uri = require("./mongoURI")
+// const uri = require("./mongoURI")
 const keys = require("./keys")
 
 const app = express()
 const PORT = process.env.PORT || 5000
-const mongouri = uri.mongoURI
+// const mongouri = process.env.mongoURI
 
 app.use(express.json())
 
@@ -32,7 +33,7 @@ AWS.config.update({
 const s3 = new AWS.S3()
 
 mongoose.connect(
-    mongouri,
+    process.env.DB_URL,
     { useNewUrlParser: true, useUnifiedTopology: true },
     err => {
         if (err) {
