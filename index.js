@@ -3,15 +3,16 @@ const multer = require("multer")
 const AWS = require("aws-sdk")
 const fs = require("fs")
 const mongoose = require("mongoose")
+const cors = require("cors")
 require("dotenv").config()
 
 const Project = require("./models/project")
-// const keys = require("./keys")
 
 const app = express()
 const PORT = process.env.PORT || 5000
 
 app.use(express.json())
+app.use(cors())
 
 const storage = multer.diskStorage({
     destination: "uploads/",
